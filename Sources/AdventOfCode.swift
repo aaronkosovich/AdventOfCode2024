@@ -2,7 +2,7 @@ import ArgumentParser
 
 // Add each new day implementation to this array:
 @available(iOS 16.0, *)
-let allChallenges: [any AdventDay] = [
+nonisolated(unsafe) let allChallenges: [any AdventDay] = [
     Day00(),
     Day01()
 ]
