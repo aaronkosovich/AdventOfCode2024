@@ -2,6 +2,7 @@
 @_exported import Collections
 import Foundation
 
+@available(iOS 16.0.0, *)
 protocol AdventDay {
   associatedtype Answer = Int
 
@@ -26,6 +27,7 @@ struct PartUnimplemented: Error {
   let part: Int
 }
 
+@available(iOS 16.0.0, *)
 extension AdventDay {
   // Find the challenge day from the type name.
   static var day: Int {

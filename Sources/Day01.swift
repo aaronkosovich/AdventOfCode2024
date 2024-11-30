@@ -1,6 +1,7 @@
 import Algorithms
 
-struct Day00: AdventDay {
+@available(iOS 16.0, *)
+struct Day01: AdventDay {
   // Save your data in a corresponding text file in the `Data` directory.
   var data: String
 
