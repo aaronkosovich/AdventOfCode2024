@@ -7,7 +7,7 @@
 
 import Algorithms
 
-// Warm-up challenge from AoC22 day 1.
+// Warm-up challenge from AoC21 day 1.
 
 @available(iOS 16.0, *)
 struct Day0: AdventDay {

@@ -1,3 +1,10 @@
+//
+//  Day01.swift
+//  AdventOfCode
+//
+//  Created by Aaron Kosovich on 01/12/2024.
+//
+
 import Algorithms
 
 @available(iOS 16.0, *)
@@ -5,21 +12,49 @@ struct Day01: AdventDay {
     var data: String
     
     // Splits input data into its component parts and convert from string.
-    var entities: [[Int]] {
-        data.split(separator: "\n\n").map {
-            $0.split(separator: "\n").compactMap { Int($0) }
+    var measurements: [[Int]] {
+        let lines = data.split(separator: "\n")
+        let numbers = lines.map { line in
+            line.split(separator: " ").compactMap { Int($0) }
         }
+        return numbers
     }
     
-    // Replace this with your solution for the first part of the day's challenge.
-    func part1() -> Any {
-        // Calculate the sum of the first set of input data
-        entities.first?.reduce(0, +) ?? 0
+    func part1() -> Int {
+        var totalDistance = 0
+        var arrayA: [Int] = []
+        var arrayB: [Int] = []
+        
+        for measurement in measurements {
+            arrayA.append(measurement[0])
+            arrayB.append(measurement[1])
+        }
+        
+        arrayA.sort(by: < )
+        arrayB.sort(by: < )
+        
+        for i in arrayA.indices {
+            totalDistance += abs(arrayB[i] - arrayA[i])
+        }
+        
+        return totalDistance
     }
     
-    // Replace this with your solution for the second part of the day's challenge.
-    func part2() -> Any {
-        // Sum the maximum entries in each set of data
-        entities.map { $0.max() ?? 0 }.reduce(0, +)
+    func part2() -> Int {
+        var totalDistance = 0
+        var arrayA: [Int] = []
+        var arrayB: [Int] = []
+        
+        for measurement in measurements {
+            arrayA.append(measurement[0])
+            arrayB.append(measurement[1])
+        }
+        
+        for i in arrayA.indices {
+            let count = arrayB.count(where: ({ $0 == arrayA[i] }))
+            totalDistance += (count * arrayA[i])
+        }
+        
+        return totalDistance
     }
 }

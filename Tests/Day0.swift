@@ -3,7 +3,7 @@ import XCTest
 
 @testable import AdventOfCode
 
-final class Day01Tests: XCTestCase {
+final class Day0Tests: XCTestCase {
     // Smoke test data provided in the challenge question
     let testData = """
     199
