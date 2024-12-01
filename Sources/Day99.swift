@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Day99.swift
 //  AdventOfCode
 //
 //  Created by Aaron Kosovich on 30/11/2024.
@@ -17,40 +17,19 @@ struct Day99: AdventDay {
     }
     
     func part1() -> Any {
-        var totalDepthIncreases = 0
-        var previousDepth = measurements.first ?? 0
-        
-        for measurement in measurements {
-            if measurement > previousDepth {
-                totalDepthIncreases += 1
-            }
-            previousDepth = measurement
-        }
-        
-        return totalDepthIncreases
+        return depthComparison(of: measurements)
     }
     
     func part2() -> Any {
-        var totalDepthIncreases = 0
-        var prevMeasurementWindow: [Int] = []
+        let windowSums = zip(zip(measurements, measurements.dropFirst()), measurements.dropFirst(2))
+            .map { $0.0.0 + $0.0.1 + $0.1 }
         
-        for window in measurements.windows(ofCount: 3) {
-            var windowSum = 0
-
-            for measurement in window {
-                windowSum += measurement
-            }
-            
-            let previousWindowSum = prevMeasurementWindow.reduce(0, +)
-            
-            if windowSum > previousWindowSum && previousWindowSum != 0 {
-                totalDepthIncreases += 1
-            }
-            
-            prevMeasurementWindow.removeAll()
-            prevMeasurementWindow.append(contentsOf: window)
-        }
-        
-        return totalDepthIncreases
+        return depthComparison(of: windowSums)
+    }
+    
+    func depthComparison(of measurements: [Int]) -> Int {
+        zip(measurements, measurements.dropFirst())
+            .filter({ $1 > $0 })
+            .count
     }
 }
