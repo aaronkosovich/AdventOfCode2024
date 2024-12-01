@@ -11,8 +11,8 @@ import Algorithms
 struct Day01: AdventDay {
     var data: String
     
-    // Splits input data into its component parts and convert from string.
-    var measurements: [[Int]] {
+    // Split the input data into its component parts and convert to [[Int]].
+    var locationIdLists: [[Int]] {
         let lines = data.split(separator: "\n")
         let numbers = lines.map { line in
             line.split(separator: " ").compactMap { Int($0) }
@@ -21,38 +21,31 @@ struct Day01: AdventDay {
     }
     
     func part1() -> Int {
-        var totalDistance = 0
-        var arrayA: [Int] = []
-        var arrayB: [Int] = []
-        
-        for measurement in measurements {
-            arrayA.append(measurement[0])
-            arrayB.append(measurement[1])
-        }
-        
-        arrayA.sort(by: < )
-        arrayB.sort(by: < )
-        
-        for i in arrayA.indices {
-            totalDistance += abs(arrayB[i] - arrayA[i])
+        // Create sorted arrays for listA and listB
+        let listA = locationIdLists.map { $0[0] }.sorted()
+        let listB = locationIdLists.map { $0[1] }.sorted()
+    
+        // Measure the absolute distance between each number
+        let totalDistance = zip(listA, listB).reduce(0) { total, pairs in
+            total + abs(pairs.1 - pairs.0)
         }
         
         return totalDistance
     }
     
     func part2() -> Int {
-        var totalDistance = 0
-        var arrayA: [Int] = []
-        var arrayB: [Int] = []
+        // Create sorted arrays for listA and listB
+        let listA = locationIdLists.map { $0[0] }.sorted()
+        let listB = locationIdLists.map { $0[1] }.sorted()
         
-        for measurement in measurements {
-            arrayA.append(measurement[0])
-            arrayB.append(measurement[1])
+        // Create a frequency map for each value in listB.
+        let frequencyMap = listB.reduce(into: [:]) { counts, element in
+            counts[element, default: 0] += 1
         }
         
-        for i in arrayA.indices {
-            let count = arrayB.count(where: ({ $0 == arrayA[i] }))
-            totalDistance += (count * arrayA[i])
+        // Total distance equals the sum of each value times it's frequency.
+        let totalDistance = listA.reduce(0) { total, element in
+            total + (element * (frequencyMap[element] ?? 0))
         }
         
         return totalDistance
