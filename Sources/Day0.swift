@@ -7,8 +7,10 @@
 
 import Algorithms
 
+// Warm-up challenge from AoC22 day 1.
+
 @available(iOS 16.0, *)
-struct Day99: AdventDay {
+struct Day0: AdventDay {
     var data: String
     
     // Splits input data into its component parts and convert from string.
