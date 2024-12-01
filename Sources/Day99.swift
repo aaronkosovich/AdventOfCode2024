@@ -16,11 +16,11 @@ struct Day99: AdventDay {
         data.split(separator: "\n").compactMap({Int($0)})
     }
     
-    func part1() -> Any {
+    func part1() -> Int {
         return depthComparison(of: measurements)
     }
     
-    func part2() -> Any {
+    func part2() -> Int {
         let windowSums = zip(zip(measurements, measurements.dropFirst()), measurements.dropFirst(2))
             .map { $0.0.0 + $0.0.1 + $0.1 }
         
