@@ -152,4 +152,5 @@ final class Day02Tests: XCTestCase {
         XCTAssertEqual(day.part1(), 0)
         XCTAssertEqual(day.part2(), 1)
     }
+    
 }

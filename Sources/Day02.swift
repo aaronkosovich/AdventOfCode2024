@@ -31,7 +31,7 @@ struct Day02: AdventDay {
     private func isValidSequence(_ numbers: [Int]) -> Bool {
         let differences = zip(numbers, numbers.dropFirst())
             .map { $1 - $0 }
-            
+        
         guard differences.allSatisfy({ (1...3).contains(abs($0)) }) else {
             return false
         }
@@ -41,22 +41,14 @@ struct Day02: AdventDay {
     }
 
     private func isValidAfterRemoval(_ numbers: [Int]) -> Bool {
-        // Try removing each index and check if any resulting sequence is valid
+        // Remove each index and then check validity
         return (0..<numbers.count).contains { indexToRemove in
             let modifiedNumbers = numbers.enumerated()
                 .compactMap { index, value in
                     index != indexToRemove ? value : nil
                 }
-                
-            let differences = zip(modifiedNumbers, modifiedNumbers.dropFirst())
-                .map { $1 - $0 }
-                
-            guard differences.allSatisfy({ (1...3).contains(abs($0)) }) else {
-                return false
-            }
             
-            return differences.allSatisfy { $0 > 0 } ||
-                   differences.allSatisfy { $0 < 0 }
+            return isValidSequence(modifiedNumbers)
         }
     }
 }
