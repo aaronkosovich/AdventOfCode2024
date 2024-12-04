@@ -6,7 +6,9 @@ nonisolated(unsafe) let allChallenges: [any AdventDay] = [
     Day0(),
     Day00(),
     Day01(),
-    Day02()
+    Day02(),
+    Day03(),
+    Day04()
 ]
 
 @available(iOS 16.0, *)
