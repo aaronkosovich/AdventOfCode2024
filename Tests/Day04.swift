@@ -23,24 +23,16 @@ final class Day04Tests: XCTestCase {
     MAMMMXMMMM
     MXMXAXMASX
     """
-//    
-//    // Smoke tests
-//    
-//    func testPart1() throws {
-//        let challenge = Day04(data: testData)
-//        XCTAssertEqual(challenge.part1(), 18)
-//    }
-//    
-//    func testPart2() throws {
-//        let challenge = Day04(data: testData)
-//        XCTAssertEqual(challenge.part2(), 9)
-//    }
-//    
-    // Unit tests
-//    
-//    func testEmptyInput() {
-//        let day = Day04(data: "")
-//        XCTAssertEqual(day.part1(), 0)
-//        XCTAssertEqual(day.part2(), 0)
-//    }
+    
+    // Smoke tests
+    
+    func testPart1() throws {
+        let challenge = Day04(data: testData)
+        XCTAssertEqual(challenge.part1(), 18)
+    }
+    
+    func testPart2() throws {
+        let challenge = Day04(data: testData)
+        XCTAssertEqual(challenge.part2(), 9)
+    }
 }
