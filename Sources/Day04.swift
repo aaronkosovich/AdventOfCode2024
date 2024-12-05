@@ -38,71 +38,6 @@ struct Day04: AdventDay {
         total += countOccurences(of: "XMAS", in: getDiagonals(verticallyFlipped))  // bottom-left to top-right
         total += countOccurences(of: "XMAS", in: getDiagonals(bothFlipped))  // bottom-right to top-left
         
-        func countOccurences(of target: String, in data: [String]) -> Int {
-            var total = 0
-            for line in data {
-                let stringLine = String(line)
-                guard stringLine.count >= 4 else { continue }
-                
-                for startIndex in 0...(stringLine.count - 4) {
-                    let start = stringLine.index(stringLine.startIndex, offsetBy: startIndex)
-                    let end = stringLine.index(stringLine.startIndex, offsetBy: startIndex + 3)
-                    let substring = stringLine[start...end]
-                    
-                    if substring == target {
-                        total += 1
-                    }
-                }
-            }
-            return total
-        }
-        
-        func transpose(_ input: [String]) -> [String] {
-            guard !input.isEmpty else { return [] }
-            
-            let cols = input[0].count
-            var result = Array(repeating: "", count: cols)
-            
-            for line in input {
-                for (col, char) in line.enumerated() {
-                    result[col].append(char)
-                }
-            }
-            return result
-        }
-        
-        func getDiagonals(_ input: [String]) -> [String] {
-            var diagonals: [String] = []
-            
-            for startCol in 0..<input[0].count {
-                var diagonal = ""
-                var row = 0
-                var col = startCol
-                
-                while row < input.count && col < input[0].count {
-                    let line = input[row]
-                    diagonal.append(line[line.index(line.startIndex, offsetBy: col)])
-                    row += 1
-                    col += 1
-                }
-                if diagonal.count > 1 { diagonals.append(diagonal) }
-            }
-            
-            for startRow in 1..<input.count {
-                var diagonal = ""
-                var row = startRow
-                var col = 0
-                
-                while row < input.count && col < input[0].count {
-                    let line = input[row]
-                    diagonal.append(line[line.index(line.startIndex, offsetBy: col)])
-                    row += 1
-                    col += 1
-                }
-                if diagonal.count > 1 { diagonals.append(diagonal) }
-            }
-            return diagonals
-        }
         return total
     }
     
@@ -179,6 +114,72 @@ struct Day04: AdventDay {
             }
         }
         return total
+    }
+    
+    func countOccurences(of target: String, in data: [String]) -> Int {
+        var total = 0
+        for line in data {
+            let stringLine = String(line)
+            guard stringLine.count >= 4 else { continue }
+            
+            for startIndex in 0...(stringLine.count - 4) {
+                let start = stringLine.index(stringLine.startIndex, offsetBy: startIndex)
+                let end = stringLine.index(stringLine.startIndex, offsetBy: startIndex + 3)
+                let substring = stringLine[start...end]
+                
+                if substring == target {
+                    total += 1
+                }
+            }
+        }
+        return total
+    }
+    
+    func transpose(_ input: [String]) -> [String] {
+        guard !input.isEmpty else { return [] }
+        
+        let cols = input[0].count
+        var result = Array(repeating: "", count: cols)
+        
+        for line in input {
+            for (col, char) in line.enumerated() {
+                result[col].append(char)
+            }
+        }
+        return result
+    }
+    
+    func getDiagonals(_ input: [String]) -> [String] {
+        var diagonals: [String] = []
+        
+        for startCol in 0..<input[0].count {
+            var diagonal = ""
+            var row = 0
+            var col = startCol
+            
+            while row < input.count && col < input[0].count {
+                let line = input[row]
+                diagonal.append(line[line.index(line.startIndex, offsetBy: col)])
+                row += 1
+                col += 1
+            }
+            if diagonal.count > 1 { diagonals.append(diagonal) }
+        }
+        
+        for startRow in 1..<input.count {
+            var diagonal = ""
+            var row = startRow
+            var col = 0
+            
+            while row < input.count && col < input[0].count {
+                let line = input[row]
+                diagonal.append(line[line.index(line.startIndex, offsetBy: col)])
+                row += 1
+                col += 1
+            }
+            if diagonal.count > 1 { diagonals.append(diagonal) }
+        }
+        return diagonals
     }
 }
 
